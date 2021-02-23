@@ -154,11 +154,25 @@ public class Date implements Comparable<Date>{
 	 */
 	@Override
 	public int compareTo(Date date) { //return 1, 0, or -1
-		return 1;
-	}
-	
-	public static int compare() { //used when comparing dates in compareTo
-		return 1;
+		if(year < date.getYear())
+			return -1;
+		else if(year > date.getYear())
+			return 1;
+		else {
+			if(month < date.getMonth())
+				return -1;
+			else if(month > date.getMonth())
+				return 1;
+			else {
+				if(day < date.getDay())
+					return -1;
+				else if(day > date.getDay())
+					return 1;
+				
+				else
+					return 0;
+			}
+		}
 	}
 	
 	/**
@@ -204,4 +218,3 @@ public class Date implements Comparable<Date>{
 		
 	}
 }
-
