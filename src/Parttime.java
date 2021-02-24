@@ -1,54 +1,95 @@
 package src;
 
+/**
+ * Parttime class, driver from Employee.
+ * This class store profile information and payment of one employee
+ *
+ * @author Yuan zhao,Alexander Galvan
+ */
 public class Parttime extends Employee {
-	private int hours;
+	private int hoursWorked;
 	private double hourlyRate;
 	
-	public void setHours(int hours) {
-		this.hours = hours;
+	/**
+	 * Parttime constructor to set profile
+	 * 
+	 * @param profile information of parttime employee
+	 */
+	public Parttime(Profile profile) {
+		super(profile);
+		hourlyRate = 0;
 	}
 	
-	public int getHours() {
-		return hours;
+	/**
+	 * Parttime constructor to set profile and hourlyRate
+	 * 
+	 * @param profile information of parttime employee
+	 * @param hourlyRate of parttime employee
+	 */
+	public Parttime(Profile profile, double hourlyRate) {
+		super(profile);
+		this.hourlyRate = hourlyRate;
 	}
 	
+	/**
+	 * Set hours worked by parttime employee
+	 * 
+	 * @param hoursWorked to set
+	 */
+	public void setHoursWorked(int hoursWorked) {
+		if(hoursWorked < 100 && hoursWorked > 0)
+			this.hoursWorked = hoursWorked;
+	}
+	
+	/**
+	 * Get hours worked from parttime employee
+	 * 
+	 * @return int hours worked
+	 */
+	public int getHoursWorked() {
+		return hoursWorked;
+	}
+	
+	/**
+	 * Set the hourly rate of parttime employee
+	 * 
+	 * @param rate to set
+	 */
 	public void setHourlyRate(double rate) {
 		hourlyRate = rate;
 	}
 	
+	/**
+	 * Get the hourly rate of parttime employee
+	 * 
+	 * @return double hourly rate
+	 */
 	public double getHourlyRate() {
 		return hourlyRate;
 	}
 	
+	/**
+	 * Calculate the payment for parttime employee
+	 */
 	@Override
 	public void calculatePayment() {
-		if(hours > 80) {
-			if(hours > 100)
-				hours = 100;
-			super.setPayment((hours * hourlyRate) + (hours-80 * (hourlyRate * 1.5)));
+		if(hoursWorked > 80) {
+			super.setPayment((hoursWorked * hourlyRate) + ((hoursWorked-80) * (hourlyRate * 1.5)));
 		}
 		
 		else
-			super.setPayment(hours * hourlyRate);
+			super.setPayment(hoursWorked * hourlyRate);
 	}
 	
 	@Override
-	public String toString() {
-		return "";
-	}
+    public String toString() {
+        return super.toString() + "PART TIME" + "::" + "Hourly Rate $"
+                + String.format("%,.2f", this.hourlyRate) + "::"
+                + "Hours worked this period: " + this.hoursWorked;
+    }
 	
-	@Override
-	public boolean equals(Object obj) { //compare name, department, and date hired
-		if(obj == null)
-			return false;
-		
-		else if(obj instanceof Parttime) {
-			Parttime aParttime = (Parttime)obj;
-			return hours != aParttime.getHours() ? false : (hourlyRate != aParttime.getHourlyRate() ? false : true);
-		}
-		
-		else 
-			return false;
-		
-	}
+	 @Override
+	    public boolean equals(Object obj) {
+	        return super.equals(obj);
+	    }
 }
