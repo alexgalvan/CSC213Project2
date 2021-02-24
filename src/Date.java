@@ -1,11 +1,11 @@
-/**
- * Properties of a Date.
- * Includes constructors, getter methods, and isValid to check for valid dates.
- * @author Alexander Galvan, Yuan Zhao
- */
 package src;
 import java.util.Calendar;
 
+/**
+ * Date class,parse format date(mm/dd/yyyy) to get year,month and day.
+ *
+ * @author Yuan zhao,Alexander Galvan
+ */
 public class Date implements Comparable<Date>{
     private int year;
     private int month;
@@ -33,10 +33,10 @@ public class Date implements Comparable<Date>{
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
 
-    //taking mm/dd/yyyy and create a Date object
     /**
-     * Basic constructor for Date that takes a string and splits it.
-     * @param date is the string to be split
+     * Date constructor
+     *
+     * @param date string of data, format:01/01/2011
      */
     public Date(String date){
         String dates[] = date.split("/");
@@ -45,9 +45,8 @@ public class Date implements Comparable<Date>{
 		year = Integer.parseInt(dates[2].trim());
 	}
 
-    //creating an object with today's date (see Calendar class)
     /**
-     * Default constructor that sets Date attributes to current date.
+     * Default Date constructor, return current date
      */
     public Date(){
         Calendar cal = Calendar.getInstance();
@@ -58,34 +57,37 @@ public class Date implements Comparable<Date>{
     }
     
     /**
-     * To get the year of Date.
-     * @return int of the the year
+     * get year of date
+     *
+     * @return year
      */
     public int getYear(){
 		return this.year;
 	}
 	
     /**
-     * To get the month of Date.
-     * @return int of the month
+     * get month of date
+     *
+     * @return month
      */
 	public int getMonth(){
 		return this.month;
 	}
 	
 	/**
-	 * To get the day of Date.
-	 * @return int of the day
-	 */
+     * get day of date
+     *
+     * @return day
+     */
 	public int getDay(){
 		return this.day;
 	}
 
 	/**
-	 * Checks the validity of a date.
-	 * Checks for future dates, dates before 1900, correct days in month, and leap years.
-	 * @return true if the date is valid, false if it is not
-	 */
+     * check whether a date is formatted correctly
+     *
+     * @return true if the date is valid
+     */
     public boolean isValid(){
         Calendar currentDate = Calendar.getInstance();
         Calendar thisDate = Calendar.getInstance();
@@ -121,9 +123,10 @@ public class Date implements Comparable<Date>{
         
     }
 
-    // User created method, checks if there is a leap year
+
     /**
      * Checks if the year is a leap year.
+     * 
      * @param year to be checked
      * @return true if it is a leap year, false if it is not
      */
@@ -140,18 +143,11 @@ public class Date implements Comparable<Date>{
 		return false;
 	}
 	
-	/**
-	 * Represent date as a string.
-	 * @return String of date representation
-	 */
 	@Override
 	public String toString() {
 		return month + "/" + day + "/" + year;
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public int compareTo(Date date) { //return 1, 0, or -1
 		if(year < date.getYear())
